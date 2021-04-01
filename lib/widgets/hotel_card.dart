@@ -1,3 +1,4 @@
+import 'package:booking_app/constants.dart';
 import 'package:booking_app/widgets/star_display.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +16,10 @@ class HotelCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(60)
+  ),
       height: 150,
       child: Card(
         color: Colors.white,
@@ -43,11 +48,7 @@ class HotelCard extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 12),
                     child: Text(
                       placeName,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: kHotelCard,
                       textAlign: TextAlign.left,
                     ),
                   ),
@@ -62,11 +63,7 @@ class HotelCard extends StatelessWidget {
                         
                         price + ' /per night',
                         
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 13.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: kHotelCard,
                         textAlign: TextAlign.left,
                       )),
                 ],

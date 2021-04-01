@@ -5,11 +5,8 @@ InputDecoration kInputField = InputDecoration(
     contentPadding: EdgeInsets.symmetric(vertical: 10),
     fillColor: Colors.blueGrey.withAlpha(600),
     filled: true,
-    
     hintStyle: TextStyle(
-        fontSize: 16,
-        color: Colors.white.withOpacity(0.5),
-        fontFamily: 'Sans'),
+        fontSize: 16, color: Colors.white.withOpacity(0.5), fontFamily: 'Sans'),
     prefixIcon: Icon(
       LineIcons.search,
       color: Colors.blueGrey.withOpacity(0.9),
@@ -25,10 +22,7 @@ final outlineBorder = OutlineInputBorder(
 );
 
 TextStyle kFieldTitle = TextStyle(
-  fontFamily: 'Sans',
-  fontSize: 18,
-  color: Colors.white.withOpacity(0.8)
-);
+    fontFamily: 'Sans', fontSize: 18, color: Colors.white.withOpacity(0.8));
 
 TextStyle kCardTitle = TextStyle(
   fontSize: 24.0,
@@ -44,3 +38,19 @@ TextStyle kInputText = TextStyle(
   fontFamily: 'Sans',
 );
 
+ShapeBorder kBackButtonShape = RoundedRectangleBorder(
+  borderRadius: BorderRadius.only(
+    topRight: Radius.circular(30),
+  ),
+);
+
+Widget kBackBtn = Icon(
+  Icons.arrow_back_ios,
+  // color: Colors.black54,
+);
+
+final kHotelCard = TextStyle(
+    color: Colors.black,
+    fontSize: 18.0,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'Sans');

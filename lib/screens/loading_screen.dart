@@ -38,14 +38,14 @@ class _LoadingScreenState extends State<LoadingScreen> {
   Widget build(BuildContext context) {
     String location = widget.location;
     return Scaffold(
-      backgroundColor: Colors.black.withOpacity(0.9),
+      backgroundColor: Color(0xFF2A6CDC),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             SpinKitFadingFour(
-           color: Colors.blueGrey,
+           color: Colors.white,
             size: 50.0,
             ),
             SizedBox(

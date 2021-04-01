@@ -1,3 +1,4 @@
+import 'package:booking_app/constants.dart';
 import 'package:booking_app/screens/details_screen.dart';
 import 'package:booking_app/screens/search_screen.dart';
 import 'package:booking_app/services/networking.dart';
@@ -20,30 +21,57 @@ class _LocationScreenState extends State<LocationScreen> {
     print(ress.toString());
     int l = ress.length;
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Available Hotels'),
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.home_outlined),
-            onPressed: () async {
-                    Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return WelcomScreen(
-                      
-                    );
-                  },
-                ),
-              );
-                  },
-          ),
-          IconButton(icon: Icon(Icons.search), onPressed: () {}),
-        ],
+      appBar: PreferredSize(
+  preferredSize: Size(double.infinity, 100),
+  child: Container(
+    decoration: BoxDecoration(boxShadow: [
+      BoxShadow(color: Color(0xFFF9F9F9), spreadRadius: 5, blurRadius: 2)
+    ]),
+    height: 80,
+    child: Container(
+      decoration: BoxDecoration(
+          color: Color(0xFF2A6CDC),
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20))),
+      child: Container(
+        margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return WelcomScreen();
+    }));
+              },
+                child: Icon(
+                Icons.navigate_before,
+                size: 25,
+                color: Colors.white,
+              ),
+            ),
+            Text(
+              "Available Hotels",
+              style: TextStyle(
+                fontSize: 30,
+                color: Colors.white,
+                fontFamily: 'Sans',
+              ),
+            ),
+            Icon(
+              Icons.navigate_before,
+              color: Colors.transparent,
+            ),
+          ],
+        ),
       ),
+    ),
+  ),
+),
       body: Container(
-          color: Colors.white,
+          color: Color(0xFFF9F9F9),
           child: ListView.builder(
               scrollDirection: Axis.vertical,
               itemCount: l,

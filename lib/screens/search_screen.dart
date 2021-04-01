@@ -27,12 +27,14 @@ class _WelcomScreenState extends State<WelcomScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: Container(
         height: MediaQuery.of(context).size.height,
         decoration: new BoxDecoration(
           image: new DecorationImage(
               image: new AssetImage("assets/hotel.jpg"),
               fit: BoxFit.cover,
+              alignment:Alignment.topCenter,
           )
         ),
         child: SingleChildScrollView(
