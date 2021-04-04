@@ -1,12 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-
 class NetworkHelper {
-  final String apiKey =
-      "5ae2e3f221c38a28845f05b6862cadcee936a16d50308813cb45978b";
+  final String apiKey = "f1025a44cbmshae5cfb6a84ccd5dp1ef9d9jsn0f2cd8f80dcf";
   final headers = {
-    'x-rapidapi-key': "bc4ee83b66msh64496286c1e7ed7p155ac0jsn0fc9bf530755",
+    'x-rapidapi-key': "f1025a44cbmshae5cfb6a84ccd5dp1ef9d9jsn0f2cd8f80dcf",
     'x-rapidapi-host': "hotels4.p.rapidapi.com"
   };
   Future getData() async {
@@ -24,7 +22,7 @@ class NetworkHelper {
     String queryString = Uri(queryParameters: {
       "destinationId": hotelID,
       "pageNumber": "1",
-      "checkIn": "2021-03-30",
+      "checkIn": "2021-04-12",
       "checkOut": "2021-04-15",
       "pageSize": "25",
       "adults1": "1",
@@ -39,6 +37,7 @@ class NetworkHelper {
       requestUrl,
       headers: headers,
     );
+    print(response);
     return jsonDecode(response.body);
   }
 
@@ -82,7 +81,7 @@ class NetworkHelper {
         Uri(queryParameters: {"query": str, "locale": "en_US"}).query;
 
     var requestUrl = endpointUrl + '?' + queryString;
-
+    print(requestUrl);
     http.Response response = await http.get(
       requestUrl,
       headers: headers,

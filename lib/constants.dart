@@ -54,3 +54,5 @@ final kHotelCard = TextStyle(
     fontSize: 18.0,
     fontWeight: FontWeight.bold,
     fontFamily: 'Sans');
+
+final kBlueColor = Color(0xFF2A6CDC);

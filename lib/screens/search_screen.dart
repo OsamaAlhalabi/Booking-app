@@ -27,206 +27,214 @@ class _WelcomScreenState extends State<WelcomScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        decoration: new BoxDecoration(
-          image: new DecorationImage(
-              image: new AssetImage("assets/hotel.jpg"),
-              fit: BoxFit.cover,
-              alignment:Alignment.topCenter,
-          )
+    resizeToAvoidBottomInset: false,    
+    body: Stack(
+      children: <Widget>[
+        Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: new BoxDecoration(
+        image: new DecorationImage(
+            image: new AssetImage("assets/hotel.jpg"),
+            fit: BoxFit.fill,
+            
+        )
+      ),
         ),
-        child: SingleChildScrollView(
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.black.withOpacity(0.6),
-            ),
-            margin: EdgeInsets.fromLTRB(20, 140, 20, 140),
-            padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Text(
-                  'FIND YOUR HOTEL',
-                  style: kCardTitle,
-                  textAlign: TextAlign.center,
+        Container(
+      height: MediaQuery.of(context).size.height,
+      child: SingleChildScrollView(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.black.withOpacity(0.6),
+          ),
+          margin: EdgeInsets.fromLTRB(20, 140, 20, 140),
+          padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Text(
+                'FIND YOUR HOTEL',
+                style: kCardTitle,
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: Text(
+                  'City Name',
+                  textAlign: TextAlign.start,
+                  style: kFieldTitle,
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
-                  child: Text(
-                    'City Name',
-                    textAlign: TextAlign.start,
-                    style: kFieldTitle,
-                  ),
-                ),
-                SizedBox(
-                  height: 6,
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width / 2.55,
-                    child: Center(
-                      child: TextField(
-                          style: kInputText,
-                          controller: cityFieldController,
-                          decoration: kInputField.copyWith(
-                            hintText: 'City, Country, etc..',
-                            errorText: cityFieldController.text.isEmpty &&
-                                    searchButtonPressed
-                                ? 'Value Can\'t Be Empty'
-                                : null,
-                          ),
-                          ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  children: <Widget>[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16.0),
-                          child: Text(
-                            'Check-In',
-                            style: kFieldTitle,
-                            textAlign: TextAlign.start,
-                          ),
+              ),
+              SizedBox(
+                height: 6,
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
+                child: Container(
+                  width: MediaQuery.of(context).size.width / 2.55,
+                  child: Center(
+                    child: TextField(
+                        style: kInputText,
+                        controller: cityFieldController,
+                        decoration: kInputField.copyWith(
+                          hintText: 'City, Country, etc..',
+                          errorText: cityFieldController.text.isEmpty &&
+                                  searchButtonPressed
+                              ? 'Value Can\'t Be Empty'
+                              : null,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width / 2.55,
-                            child: Center(
-                              child: TextField(
-                                keyboardType: TextInputType.datetime,
-                                  controller: checkInController,
-                                  style: kInputText,
-                                  decoration: kInputField.copyWith(
-                                    
-                                    hintText: '4/4/2021',
-                                    errorText: checkInController.text.isEmpty &&
-                                            searchButtonPressed
-                                        ? 'Value Can\'t Be Empty'
-                                        : null,
-                                  ),
+                        ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: <Widget>[
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Text(
+                          'Check-In',
+                          style: kFieldTitle,
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width / 2.55,
+                          child: Center(
+                            child: TextField(
+                              keyboardType: TextInputType.datetime,
+                                controller: checkInController,
+                                style: kInputText,
+                                decoration: kInputField.copyWith(
                                   
-                                  ),
-                            ),
+                                  hintText: '4/4/2021',
+                                  errorText: checkInController.text.isEmpty &&
+                                          searchButtonPressed
+                                      ? 'Value Can\'t Be Empty'
+                                      : null,
+                                ),
+                                
+                                ),
                           ),
                         ),
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16.0),
-                          child: Text(
-                            'Check-Out',
-                            style: kFieldTitle,
-                            textAlign: TextAlign.start,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Text(
+                          'Check-Out',
+                          style: kFieldTitle,
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width / 2.55,
+                          child: Center(
+                            child: TextField(
+                              keyboardType: TextInputType.datetime,
+                                controller: checkOutController,
+                                style: kInputText,
+                                decoration: kInputField.copyWith(
+                                  hintText: '16/4/2021',
+                                  errorText:
+                                      checkOutController.text.isEmpty &&
+                                              searchButtonPressed
+                                          ? 'Value Can\'t Be Empty'
+                                          : null,
+                                )),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width / 2.55,
-                            child: Center(
-                              child: TextField(
-                                keyboardType: TextInputType.datetime,
-                                  controller: checkOutController,
-                                  style: kInputText,
-                                  decoration: kInputField.copyWith(
-                                    hintText: '16/4/2021',
-                                    errorText:
-                                        checkOutController.text.isEmpty &&
-                                                searchButtonPressed
-                                            ? 'Value Can\'t Be Empty'
-                                            : null,
-                                  )),
-                            ),
-                          ),
-                        )
-                      ],
-                    )
-                  ],
+                      )
+                    ],
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: Text(
+                  'Number of Guests',
+                  textAlign: TextAlign.start,
+                  style: kFieldTitle,
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
-                  child: Text(
-                    'Number of Guests',
-                    textAlign: TextAlign.start,
-                    style: kFieldTitle,
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
+                child: Container(
+                  width: MediaQuery.of(context).size.width / 2.55,
+                  child: Center(
+                    child: TextField(
+                      keyboardType: TextInputType.number,
+                        controller: guestCountController,
+                        style: kInputText,
+                        decoration: kInputField.copyWith(
+                          hintText: '2 Guests',
+                          errorText: guestCountController.text.isEmpty &&
+                                  searchButtonPressed
+                              ? 'Value Can\'t Be Empty'
+                              : null,
+                        )),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width / 2.55,
-                    child: Center(
-                      child: TextField(
-                        keyboardType: TextInputType.number,
-                          controller: guestCountController,
-                          style: kInputText,
-                          decoration: kInputField.copyWith(
-                            hintText: '2 Guests',
-                            errorText: guestCountController.text.isEmpty &&
-                                    searchButtonPressed
-                                ? 'Value Can\'t Be Empty'
-                                : null,
-                          )),
-                    ),
-                  ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              FloatingActionButton(
+                backgroundColor: Colors.white70,
+                onPressed: () {
+                  setState(() {
+                    searchButtonPressed = true;
+                  });
+                  if (check()) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return LoadingScreen(
+                              location: cityFieldController.text,
+                              checkIn: checkInController.text,
+                              checkOut: checkOutController.text,
+                              guestCount: guestCountController.text);
+                        },
+                      ),
+                    );
+                  }
+                },
+                child: Icon(
+                  FontAwesomeIcons.search,
+                  color: Colors.black87,
                 ),
-                SizedBox(
-                  height: 30,
-                ),
-                FloatingActionButton(
-                  backgroundColor: Colors.white70,
-                  onPressed: () {
-                    setState(() {
-                      searchButtonPressed = true;
-                    });
-                    if (check()) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return LoadingScreen(
-                                location: cityFieldController.text,
-                                checkIn: checkInController.text,
-                                checkOut: checkOutController.text,
-                                guestCount: guestCountController.text);
-                          },
-                        ),
-                      );
-                    }
-                    ;
-                  },
-                  child: Icon(
-                    FontAwesomeIcons.search,
-                    color: Colors.black87,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
-    );
+        ),
+      ],
+      
+      ),
+      );
   }
 }

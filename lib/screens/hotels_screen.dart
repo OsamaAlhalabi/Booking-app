@@ -27,10 +27,10 @@ class _LocationScreenState extends State<LocationScreen> {
     decoration: BoxDecoration(boxShadow: [
       BoxShadow(color: Color(0xFFF9F9F9), spreadRadius: 5, blurRadius: 2)
     ]),
-    height: 80,
+    height: 84,
     child: Container(
       decoration: BoxDecoration(
-          color: Color(0xFF2A6CDC),
+          color:  kBlueColor,
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(20),
               bottomRight: Radius.circular(20))),
@@ -46,18 +46,24 @@ class _LocationScreenState extends State<LocationScreen> {
       return WelcomScreen();
     }));
               },
-                child: Icon(
-                Icons.navigate_before,
-                size: 25,
-                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(12, 10, 0, 0),
+                  child: Icon(
+                  Icons.navigate_before,
+                  size: 25,
+                  color: Color(0xFFF9F9F9),
               ),
+                ),
             ),
-            Text(
-              "Available Hotels",
-              style: TextStyle(
-                fontSize: 30,
-                color: Colors.white,
-                fontFamily: 'Sans',
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 10, 12, 0),
+              child: Text(
+                "Available Hotels",
+                style: TextStyle(
+                  fontSize: 30,
+                  color: Color(0xFFF9F9F9),
+                  fontFamily: 'Sans',
+                ),
               ),
             ),
             Icon(
@@ -86,13 +92,13 @@ class _LocationScreenState extends State<LocationScreen> {
                         ['searchResults']['results'][index]['id'].toString());
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return CityScreen(
+                      return DetailsPage(
                         hotelImages: imgs,
                         hotelDetails: details,
                       );
                     }));
                   },
-                  child: HotelCard(
+                  child: HotelCard2(
                     imgUrl: widget.locationPlaces['data']['body']
                             ['searchResults']['results'][index]
                         ['optimizedThumbUrls']['srpDesktop'],

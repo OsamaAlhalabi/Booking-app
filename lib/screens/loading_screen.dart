@@ -18,6 +18,7 @@ class LoadingScreen extends StatefulWidget {
 class _LoadingScreenState extends State<LoadingScreen> {
   @override
   void initState() {
+    print(widget.location);
     getLocation();
     super.initState();
   }
@@ -45,8 +46,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             SpinKitFadingFour(
-           color: Colors.white,
-            size: 50.0,
+              color: Colors.white,
+              size: 50.0,
             ),
             SizedBox(
               height: 25.0,
