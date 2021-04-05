@@ -1,218 +1,6 @@
 import 'package:booking_app/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slider_indicator/flutter_slider_indicator.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-class CityScreen extends StatefulWidget {
-  CityScreen({@required this.hotelImages, @required this.hotelDetails});
-  final hotelImages;
-  final hotelDetails;
-
-  @override
-  _CityScreenState createState() => _CityScreenState();
-}
-
-class _CityScreenState extends State<CityScreen> {
-  @override
-  Widget build(BuildContext context) {
-    dynamic img = widget.hotelImages['hotelImages'][1]['baseUrl']
-        .replaceAll('_{size}', '');
-    dynamic tag = widget.hotelDetails['data']['body']['propertyDescription']
-            ['tagline'][0]
-        .replaceAll('<b>', '');
-    tag = tag.replaceAll('</b>', '');
-
-    return Scaffold(
-        body: Column(
-      children: <Widget>[
-        Stack(
-          children: <Widget>[
-            Container(
-              height: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black26,
-                      offset: Offset(0.0, 2.0),
-                      blurRadius: 6.0,
-                    ),
-                  ]),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(30.0),
-                child: Image(
-                  width: MediaQuery.of(context).size.width,
-                  image: AssetImage('assets/hotel.jpg'
-                      // img
-                      ),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 40.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  IconButton(
-                    icon: Icon(Icons.arrow_back),
-                    iconSize: 30.0,
-                    color: Colors.black,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  Row(
-                    children: <Widget>[
-                      IconButton(
-                        icon: Icon(Icons.search),
-                        iconSize: 30.0,
-                        color: Colors.black,
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                      IconButton(
-                        icon: Icon(FontAwesomeIcons.sortAmountDown),
-                        iconSize: 25.0,
-                        color: Colors.black,
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-            Positioned(
-              left: 20.0,
-              bottom: 20.0,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    // widget.hotelDetails['data']['body']['propertyDescription']
-                    //     ['name'],
-                    'NY Moore Hostel',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 35.0,
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: 1.2,
-                    ),
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Icon(
-                        FontAwesomeIcons.locationArrow,
-                        size: 20.0,
-                        color: Colors.white,
-                      ),
-                      SizedBox(
-                        width: 5.0,
-                      ),
-                      Text(
-                        // widget.hotelDetails['data']['body']
-                        //     ['propertyDescription']['address']['countryName'],
-                        'New York',
-                        style: TextStyle(
-                          color: Colors.white70,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 1.2,
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-            Positioned(
-              right: 20.0,
-              bottom: 20.0,
-              child: Icon(
-                Icons.location_on,
-                color: Colors.white70,
-                size: 25.0,
-              ),
-            ),
-          ],
-        ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: 1,
-            itemBuilder: (BuildContext context, int index) {
-              return SingleChildScrollView(
-                  child: Column(
-                children: <Widget>[
-                  HotelFeatureCard(
-                    title: 'TAG LINE',
-                    text: 'Well, Hello There!',
-                  ),
-                  HotelFeatureCard(
-                    title: 'FREEBIES',
-                    text: 'Free WiFi and free parking',
-                  ),
-                  HotelFeatureCard(
-                    title: 'AROUND THE HOTEL',
-                    text:
-                        "Brooklyn Bridge Park - 3.2 mi / 5.1 km,Prospect Park - 3.6 mi / 5.7 km,Barclays Center Brooklyn - 3.9 mi / 6.3 km",
-                  ),
-                  HotelFeatureCard(
-                    title: 'AMENITIES',
-                    text:
-                        "Garden','Computer station','Meeting room','Multilingual staff",
-                  ),
-                ],
-              ));
-            },
-          ),
-        ),
-      ],
-    ));
-  }
-}
-
-class HotelFeatureCard extends StatelessWidget {
-  HotelFeatureCard({
-    this.text,
-    this.title,
-  });
-  final String title;
-  final String text;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20.0),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            title,
-            style: TextStyle(
-              color: Colors.black54,
-              fontSize: 24.0,
-              fontFamily: 'Sans',
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Text(
-            text,
-            style: kHotelCard,
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 class DetailsPage extends StatefulWidget {
   DetailsPage({@required this.hotelImages, @required this.hotelDetails});
@@ -250,7 +38,7 @@ class _DetailsPageState extends State<DetailsPage> {
           BackButtonWidget(),
           PriceWidget(
             price: widget.hotelDetails['data']['body']['propertyDescription']
-            ['featuredPrice']['currentPrice']['formatted'],
+                ['featuredPrice']['currentPrice']['formatted'],
           ),
           DraggableScrollableSheet(
             initialChildSize: .5,
@@ -289,12 +77,45 @@ class _DetailsPageState extends State<DetailsPage> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Expanded(
-                              child: Text(tag,
-                                  style: kCardTitle.copyWith(
-                                    color: kBlueColor,
-                                  )),
+                              child: Text(
+                                tag,
+                                style: kCardTitle.copyWith(
+                                  color: kBlueColor,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
                             ),
-                          )
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 24.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                DetailsWidget(
+                                    name: 'Guest Rate',
+                                    value: widget.hotelDetails['data']['body']
+                                            ['guestReviews']['brands']
+                                        ['formattedRating'].toString()),
+                                Container(
+                                  width: 1.0,
+                                  height: 50,
+                                  color: Colors.black26,
+                                ),
+                                DetailsWidget(
+                                    name: 'No. of Floors', value: '12'),
+                                Container(
+                                  width: 1.0,
+                                  height: 50,
+                                  color: Colors.black26,
+                                ),
+                                DetailsWidget(
+                                  name: 'No. of Rooms',
+                                  value: '199',
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -305,6 +126,38 @@ class _DetailsPageState extends State<DetailsPage> {
           )
         ],
       ),
+    );
+  }
+}
+
+class DetailsWidget extends StatelessWidget {
+  final String name;
+  final String value;
+
+  const DetailsWidget({Key key, this.name, this.value}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          name,
+          style: TextStyle(
+            fontFamily: 'Sans',
+            fontWeight: FontWeight.bold,
+            fontSize: 16.0,
+          ),
+        ),
+        Text(
+          value,
+          style: TextStyle(
+              fontFamily: 'Sans',
+              color: Colors.black38,
+              height: 1.5,
+              fontSize: 16.0),
+        )
+      ],
     );
   }
 }
@@ -400,7 +253,8 @@ class BackButtonWidget extends StatelessWidget {
 class PriceWidget extends StatelessWidget {
   final price;
   const PriceWidget({
-    Key key, this.price,
+    Key key,
+    this.price,
   }) : super(key: key);
 
   @override
@@ -421,8 +275,7 @@ class PriceWidget extends StatelessWidget {
               style: TextStyle(
                 fontFamily: 'Sans',
                 fontSize: 16.2,
-                color : Colors.black,
-
+                color: Colors.black,
               ),
             ),
           ],
