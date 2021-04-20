@@ -3,13 +3,14 @@ import 'package:line_icons/line_icons.dart';
 
 InputDecoration kInputField = InputDecoration(
     contentPadding: EdgeInsets.symmetric(vertical: 10),
-    fillColor: Colors.blueGrey.withAlpha(600),
+    fillColor: Colors.white.withAlpha(200),
     filled: true,
-    hintStyle: TextStyle(
-        fontSize: 16, color: Colors.white.withOpacity(0.5), fontFamily: 'Sans'),
+    errorStyle: TextStyle(fontFamily: 'Patrick'),
+    hintStyle:
+        TextStyle(fontSize: 16, color: Colors.black54, fontFamily: 'Sans'),
     prefixIcon: Icon(
       LineIcons.search,
-      color: Colors.blueGrey.withOpacity(0.9),
+      color: Color(0xFFCE832D).withOpacity(0.8),
       size: 24,
     ),
     border: outlineBorder,
@@ -22,19 +23,22 @@ final outlineBorder = OutlineInputBorder(
 );
 
 TextStyle kFieldTitle = TextStyle(
-    fontFamily: 'Sans', fontSize: 18, color: Colors.white.withOpacity(0.8));
+    fontFamily: 'Patrick',
+    fontSize: 18,
+    color: Colors.black.withOpacity(0.8),
+    fontWeight: FontWeight.bold);
 
 TextStyle kCardTitle = TextStyle(
-  fontSize: 24.0,
+  fontSize: 26.0,
   fontWeight: FontWeight.bold,
-  color: Colors.white,
-  fontFamily: 'Sans',
+  color: Colors.black,
+  fontFamily: 'Patrick',
 );
 
 TextStyle kInputText = TextStyle(
   fontSize: 18.0,
   fontWeight: FontWeight.w500,
-  color: Colors.white,
+  color: Colors.black87,
   fontFamily: 'Sans',
 );
 
@@ -56,3 +60,4 @@ final kHotelCard = TextStyle(
     fontFamily: 'Sans');
 
 final kBlueColor = Color(0xFF2A6CDC);
+final kGoldColor = Color(0xFFE0B84C);

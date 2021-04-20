@@ -17,7 +17,7 @@ class AppBarWidget extends StatelessWidget {
       height: 84,
       child: Container(
         decoration: BoxDecoration(
-            color: kBlueColor,
+            color: kGoldColor,
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(20),
                 bottomRight: Radius.circular(20))),

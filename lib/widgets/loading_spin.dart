@@ -24,12 +24,12 @@ class LoadingSpinWidget extends StatelessWidget {
             width: 100.0,
             height: 100.0,
             decoration: BoxDecoration(
-              color: Colors.white70,
+              color: Colors.black26,
               borderRadius: BorderRadius.circular(45),
             ),
             child: SpinKitCircle(
-              color: Colors.black,
-              size: 50.0,
+              color: Color(0xFFE0B84C),
+              size: 60.0,
             ),
           ),
         ),

@@ -1,11 +1,20 @@
+import 'dart:convert';
+
 import 'package:booking_app/constants.dart';
+import 'package:booking_app/widgets/back_button_widget.dart';
+import 'package:booking_app/widgets/details_widget.dart';
+import 'package:booking_app/widgets/image_slider_indicator.dart';
+import 'package:booking_app/widgets/image_slider_widget.dart';
+import 'package:booking_app/widgets/price_widget.dart';
+import 'package:booking_app/widgets/row_item_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slider_indicator/flutter_slider_indicator.dart';
 
 class DetailsPage extends StatefulWidget {
-  DetailsPage({@required this.hotelImages, @required this.hotelDetails});
+  DetailsPage(
+      {@required this.hotelImages, @required this.hotelDetails, this.jsnData});
   final hotelImages;
   final hotelDetails;
+  final jsnData;
 
   @override
   _DetailsPageState createState() => _DetailsPageState();
@@ -14,16 +23,14 @@ class DetailsPage extends StatefulWidget {
 class _DetailsPageState extends State<DetailsPage> {
   var _pageController = PageController();
   var _currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
+    var data = widget.jsnData;
     _pageController.addListener(() {
       setState(() {
         _currentIndex = _pageController.page.round();
       });
     });
-    dynamic img = widget.hotelImages['hotelImages'][1]['baseUrl']
-        .replaceAll('_{size}', '');
     dynamic tag = widget.hotelDetails['data']['body']['propertyDescription']
             ['tagline'][0]
         .replaceAll('<b>', '');
@@ -33,7 +40,9 @@ class _DetailsPageState extends State<DetailsPage> {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          ImageSliderWidget(pageController: _pageController, widget: widget),
+          ImageSliderWidget(
+              pageController: _pageController,
+              url: widget.hotelImages['hotelImages']),
           ImageSliderIndicator(imgCount: imgCount, currentIndex: _currentIndex),
           BackButtonWidget(),
           PriceWidget(
@@ -80,7 +89,7 @@ class _DetailsPageState extends State<DetailsPage> {
                               child: Text(
                                 tag,
                                 style: kCardTitle.copyWith(
-                                  color: kBlueColor,
+                                  color: kGoldColor,
                                 ),
                                 textAlign: TextAlign.center,
                               ),
@@ -92,30 +101,77 @@ class _DetailsPageState extends State<DetailsPage> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                DetailsWidget(
+                                RowItemWidget(
                                     name: 'Guest Rate',
                                     value: widget.hotelDetails['data']['body']
                                             ['guestReviews']['brands']
-                                        ['formattedRating'].toString()),
+                                            ['formattedRating']
+                                        .toString()),
                                 Container(
                                   width: 1.0,
                                   height: 50,
                                   color: Colors.black26,
                                 ),
-                                DetailsWidget(
+                                RowItemWidget(
                                     name: 'No. of Floors', value: '12'),
                                 Container(
                                   width: 1.0,
                                   height: 50,
                                   color: Colors.black26,
                                 ),
-                                DetailsWidget(
+                                RowItemWidget(
                                   name: 'No. of Rooms',
                                   value: '199',
                                 ),
                               ],
                             ),
                           ),
+                          DetailsWidget(
+                              data: data['INTERNET'][0].toString() +
+                                  ' & ' +
+                                  data['INTERNET'][1].toString(),
+                              title: 'Freebies'),
+                          DetailsWidget(
+                              data: data['HYGIENE'].toString(),
+                              title: 'HYGIENE'),
+                          DetailsWidget(
+                              data: data['PETS'][0].toString() +
+                                  '\n' +
+                                  data['PETS'][1].toString(),
+                              title: 'Pets'),
+                          DetailsWidget(
+                              data: data['ROOMS'][0].toString() +
+                                  '\n' +
+                                  data['ROOMS'][1].toString() +
+                                  '\n' +
+                                  data['ROOMS'][2].toString() +
+                                  '\n' +
+                                  data['ROOMS'][3].toString() +
+                                  '\n' +
+                                  data['ROOMS'][4].toString(),
+                              title: 'Rooms'),
+                          DetailsWidget(
+                              data: data['CHECKIN_REQUIRED'][0].toString() +
+                                  '\n' +
+                                  data['CHECKIN_REQUIRED'][1].toString() +
+                                  '\n' +
+                                  data['CHECKIN_REQUIRED'][2].toString(),
+                              title: 'Check-In Required'),
+                          DetailsWidget(
+                              data: data['HOTEL_FEATURE'][0].toString() +
+                                  '\n' +
+                                  data['HOTEL_FEATURE'][1].toString() +
+                                  '\n' +
+                                  data['HOTEL_FEATURE'][2].toString() +
+                                  '\n' +
+                                  data['HOTEL_FEATURE'][3].toString() +
+                                  '\n' +
+                                  data['HOTEL_FEATURE'][4].toString() +
+                                  '\n' +
+                                  data['HOTEL_FEATURE'][5].toString() +
+                                  '\n' +
+                                  data['HOTEL_FEATURE'][6].toString(),
+                              title: 'Hotel Features'),
                         ],
                       ),
                     ),
@@ -127,158 +183,5 @@ class _DetailsPageState extends State<DetailsPage> {
         ],
       ),
     );
-  }
-}
-
-class DetailsWidget extends StatelessWidget {
-  final String name;
-  final String value;
-
-  const DetailsWidget({Key key, this.name, this.value}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          name,
-          style: TextStyle(
-            fontFamily: 'Sans',
-            fontWeight: FontWeight.bold,
-            fontSize: 16.0,
-          ),
-        ),
-        Text(
-          value,
-          style: TextStyle(
-              fontFamily: 'Sans',
-              color: Colors.black38,
-              height: 1.5,
-              fontSize: 16.0),
-        )
-      ],
-    );
-  }
-}
-
-class ImageSliderWidget extends StatelessWidget {
-  const ImageSliderWidget({
-    Key key,
-    @required PageController pageController,
-    @required this.widget,
-  })  : _pageController = pageController,
-        super(key: key);
-
-  final PageController _pageController;
-  final DetailsPage widget;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * .6,
-      child: PageView.builder(
-          controller: _pageController,
-          itemBuilder: (context, index) {
-            return Image.network(
-              widget.hotelImages['hotelImages'][index]['baseUrl']
-                  .replaceAll('_{size}', ''),
-              fit: BoxFit.cover,
-            );
-          }),
-    );
-  }
-}
-
-class ImageSliderIndicator extends StatelessWidget {
-  const ImageSliderIndicator({
-    Key key,
-    @required this.imgCount,
-    @required int currentIndex,
-  })  : _currentIndex = currentIndex,
-        super(key: key);
-
-  final imgCount;
-  final int _currentIndex;
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.topCenter,
-      child: Padding(
-        padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * .45),
-        child: SliderIndicator(
-            length: imgCount,
-            activeIndex: _currentIndex,
-            indicator: Icon(
-              Icons.radio_button_unchecked,
-              color: Colors.white,
-              size: 10.0,
-            ),
-            activeIndicator: Icon(
-              Icons.fiber_manual_record,
-              color: Colors.white,
-              size: 12.0,
-            )),
-      ),
-    );
-  }
-}
-
-class BackButtonWidget extends StatelessWidget {
-  const BackButtonWidget({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.topRight,
-      child: Container(
-        margin: EdgeInsets.only(right: 24, top: 45),
-        child: IconButton(
-          icon: Icon(
-            Icons.close,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-    );
-  }
-}
-
-class PriceWidget extends StatelessWidget {
-  final price;
-  const PriceWidget({
-    Key key,
-    this.price,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        margin: EdgeInsets.only(left: 24, top: 50),
-        padding: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-        decoration: BoxDecoration(
-          color: Colors.white70,
-          borderRadius: BorderRadius.circular(25),
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            Text(
-              price + ' /per day',
-              style: TextStyle(
-                fontFamily: 'Sans',
-                fontSize: 16.2,
-                color: Colors.black,
-              ),
-            ),
-          ],
-        ));
   }
 }

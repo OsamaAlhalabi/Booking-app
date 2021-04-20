@@ -1,7 +1,6 @@
 import 'package:booking_app/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:line_icons/line_icons.dart';
-
+// ignore: must_be_immutable
 class SearchField extends StatelessWidget {
   
    var myController = TextEditingController();
@@ -16,9 +15,8 @@ class SearchField extends StatelessWidget {
         child: Center(
           child: TextFormField(
             controller: myController,
-            decoration: kInputField.copyWith(
-              hintText: 'fofo',
-            )     ),
+            decoration: kInputField     
+            ),
         ),
       ),
     );

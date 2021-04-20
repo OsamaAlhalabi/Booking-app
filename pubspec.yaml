@@ -29,10 +29,15 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/hotel.jpg
-    - assets/htl.jpg
+    - assets/
 
   fonts:
     - family: Sans
       fonts:
         - asset: fonts/PTSansNarrow-Bold.ttf
+    - family: Lobster
+      fonts:
+        - asset: fonts/LobsterTwo-Regular.ttf
+    - family: Patrick
+      fonts:
+        - asset: fonts/PatrickHand-Regular.ttf
